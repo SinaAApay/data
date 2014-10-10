@@ -61,7 +61,7 @@ class sendweibo:
             acs.append(activity[u'weibo_id'])
             users.update({"uid":activity[u'uid']},{"$set":{'activities':acs}})
         
-
+        web.SeeOther("http://weibo.com")
         return render.activityList()
 
 
