@@ -16,7 +16,9 @@ urls=(
         "/pastActivity","activity.pastActivity",
         "/userindex","userindex",
         "/startActivity","activity.startActivity",
-        "/endActivity","activity.endActivity"
+        "/endActivity","activity.endActivity",
+        "/attendActivity","activity.attendActivity",
+        "/refuseActivity","activity.refuseActivity"
 
     )
 

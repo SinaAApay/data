@@ -44,12 +44,20 @@ $def with(activitysIN,activitysORG)
                       <li>活动总金额：$ac[u'money']</li>
                       <li>确认参加人员:</li>
                       $for name in ac[u'peopleIn']:
-                      <li>$name</li>
+                            <ul>
+                            <li>$name</li>
+                            </ul>
                       <li>
-                        <form >
-                          <button type="button" class="btn btn-default">确认参加</button>
-                          <button type="button" class="btn btn-default">退出此活动</button>
+                        <form action="/attendActivity" method="POST">
+                          <button type="submit" class="btn btn-default"
+                              name="weibo_id" value="$ac[u'weibo_id']">确认参加</button>
                         </form>
+                      <li>
+                        <form action="/refuseActivity" method="POST">
+                          <button type="submit" class="btn btn-default"
+                              name="weibo_id" value="$ac[u'weibo_id']">退出此活动</button>
+                        </form>
+
                       </li>
                     </ul>
                     </div>
