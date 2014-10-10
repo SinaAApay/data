@@ -6,8 +6,8 @@ $def with(userinfor)
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <link href="http://fonts.googleapis.com/css?family=News+Cycle:400,700" rel="stylesheet" />
-<link href="default.css" rel="stylesheet" type="text/css" media="all" />
-<link href="fonts.css" rel="stylesheet" type="text/css" media="all" />
+<link href="/static/default.css" rel="stylesheet" type="text/css" media="all" />
+<link href="/static/fonts.css" rel="stylesheet" type="text/css" media="all" />
 </head>
 <body >
 <div id="header" class="container">
@@ -26,22 +26,23 @@ $def with(userinfor)
   </div>
 </div>
 <div id="banner">
-  <div class="container" style="position:relative;left:-400px;bottom:-100px;"> <img src="images/用户头像.png"/> <br/>
-  
-   <small> <a href="#" target="_blank"> 关注：//返回的关注数</a><br />
-    <a href="#" target="_blank"> 粉丝：//返回的粉丝数</a><br />
-    <a href="#" target="_blank"> 微博：//返回的微博数</a><br /></small>
+  <div class="container" style="position:relative;left:-400px;bottom:-100px;">
+      <img src="$userinfor[u'profile_image_url']"/>   <br/>
+      <a href="http://weibo.com">name: $userinfor[u'screen_name']</a><br/> 
+   <small> <a href="http://weibo.com" target="_blank"> 关注:$userinfor.friends_count</a><br />
+    <a href="http://weibo.com" target="_blank"> 粉丝：$userinfor.followers_count</a><br />
+    <a href="http://weibo.com" target="_blank"> 微博：$userinfor.statuses_count</a><br /></small>
   </div>
   <div class="container">
     <ul class="staff">
-      <li><a href="#" accesskey="7" title="当前进行的活动"><img src="images/当前进行的活动.png" alt="" /><br />
+      <li><a href="#" accesskey="7" title="当前进行的活动"><img src="/static/images/当前进行的活动.png" alt="" /><br />
         当前进行的活动</li>
-      <li><a href="#" accesskey="8" title="发起活动"><img src="images/发起活动.png" alt="" /><br />
+      <li><a href="#" accesskey="8" title="发起活动"><img src="/static/images/发起活动.png" alt="" /><br />
         发起活动</li>
       <br />
-      <li><a href="#" accesskey="9" title="过去的活动"><img src="images/过去的活动.png" alt="" /><br />
+      <li><a href="#" accesskey="9" title="过去的活动"><img src="/static/images/过去的活动.png" alt="" /><br />
         过去的活动</li>
-      <li><a href="#" accesskey="10" title="联系我们"><img src="images/联系我们.png" alt="" /><br />
+      <li><a href="#" accesskey="10" title="联系我们"><img src="/static/images/联系我们.png" alt="" /><br />
         联系我们</li>
     </ul>
   </div>
