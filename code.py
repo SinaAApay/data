@@ -14,7 +14,10 @@ urls=(
         "/sendBeginWeibo","newclass.sendweibo",
         "/currentActivity","activity.currentActivity",
         "/pastActivity","activity.pastActivity",
-        "/userindex","userindex"
+        "/userindex","userindex",
+        "/startActivity","activity.startActivity",
+        "/endActivity","activity.endActivity"
+
     )
 
 render=web.template.render('static')

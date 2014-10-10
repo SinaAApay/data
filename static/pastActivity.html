@@ -42,8 +42,8 @@ $def with(activitysIN,activitysORG)
                       <li>活动地点: $ac[u'place']</li>
                       <li>活动时间：$ac[u'date']</li>
                       <li>活动总金额：$ac[u'money']</li>
-                      <li>确认参加人员:</li>
-                      $for name in ac[u'peopleInvited']:
+                      <li>参加人员:</li>
+                      $for name in ac[u'peopleIn']:
                       <li>$name</li>
                     </ul>
                     </div>
@@ -68,8 +68,8 @@ $def with(activitysIN,activitysORG)
                       <li>活动地点: $ac[u'place']</li>
                       <li>活动时间：$ac[u'date']</li>
                       <li>活动总金额：$ac[u'money']</li>
-                      <li>确认参加人员:</li>
-                      $for name in ac['peopleInvited']:
+                      <li>参加人员:</li>
+                      $for name in ac['peopleIn']:
                       <li>$name</li>
                     </ul>
                   </div>
