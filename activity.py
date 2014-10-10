@@ -16,9 +16,15 @@ class currentActivity:
         uid=int(cookie[u'uid'])
         user=users.find_one({'uid':uid})
         for ac in user[u'activities']:
-            print ac
             a_activity=activities.find_one({u'weibo_id':ac})
-            print a_activity
-            activityORG.append(a_activity)
+            if a_activity[u'ifend']==False:
+                activityORG.append(a_activity)
+        name=cookie[u'screen_name']
+        for ac in activities.find():
+            if name in ac[u'peopleIn']:
+                activityIn.append(ac)
+        for ac in activityIn:
+            print ac
 
-        return "currentActivity"
+        return render.activityList(activityIn,activityORG)
+
