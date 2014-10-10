@@ -45,7 +45,10 @@ class sendweibo:
         activity[u'place']=activityPosition
         activity[u'money']=activityMoney
         activity[u'date']=activityTime
-        activity[u'people']=namelist
+        activity[u'peopleInvited']=namelist
+        activity[u'peopleIn']=[]
+        activity[u'ifclose']=False
+        activity[u'ifbegin']=False
         activities.insert(activity)
         users=db.users
         userinfor=users.find_one({"uid":activity[u'uid']})
