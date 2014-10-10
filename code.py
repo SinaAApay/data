@@ -3,6 +3,7 @@ import urllib,urllib2
 import weibo
 import pachong
 import newclass
+import activity
 
 urls=(
         "/","index",
@@ -10,7 +11,8 @@ urls=(
         "/redirecturl","userindex",
         "/beginActivity","designActivity",
         "/error","error",
-        "/sendBeginWeibo","newclass.sendweibo"
+        "/sendBeginWeibo","newclass.sendweibo",
+        "/currentActivity","activity.currentActivity"
     )
 
 render=web.template.render('static')
