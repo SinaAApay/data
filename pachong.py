@@ -1,9 +1,16 @@
 from weibo import APIClient
 
 class pachong:
-    def __init__(self,appkey,appsecret,callbackurl,accesstoken,expin):
-        self.client=APIClient(app_key=appkey,app_secret=appsecret)
-        self.client.set_access_token(accesstoken,expin)
+    def __init__(self):
+        Appkey="3423280349"
+        Appsecret="1f74f37b71c5ca2e0faadc41129d516a"
+        callbackurl="http://www.baidu.com"
+        ack="2.00pVrsKC3mz1gE840b5f298788d81D"
+        expin="7801776"
+        self.client=APIClient(app_key=Appkey,app_secret=Appsecret)
+        self.client.set_access_token(ack,expin)
+
+
 
 
     def printcurrentuser(self):
@@ -25,33 +32,9 @@ class pachong:
     def ShowUserFriends(self,name):
         print self.client.friendships.friends.get(screen_name=name)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-if __name__=="__main__":
-    Appkey="3423280349"
-    Appsecret="1f74f37b71c5ca2e0faadc41129d516a"
-    callbackurl="http://www.baidu.com"
-    ack="2.00pVrsKC3mz1gE840b5f298788d81D"
-    expin="7801776"
-
-    p=pachong(Appkey,Appsecret,callbackurl,ack,expin)
-   # p.printcurrentuser()
-   # p.printuserwithname(u"")
-   # p.ShowUserInformation(u"Fencingworld")
-    #p.ShowUserList(u"Fencingworld")
-  #  p.ShowUserFriends(u"Fencingworld")
+    def getBiFriendsName(self,uid,i):
+        friends=[]
+        result=self.client.friendships.friends.bilateral.get(uid=uid,count=100,page=i)
+        for user in result[u'users']:
+            friends.append(user[u'screen_name'])
+        return friends
