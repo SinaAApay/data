@@ -1,17 +1,50 @@
 $def with(userinfor)
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>userindex</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href="http://fonts.googleapis.com/css?family=News+Cycle:400,700" rel="stylesheet" />
+<link href="default.css" rel="stylesheet" type="text/css" media="all" />
+<link href="fonts.css" rel="stylesheet" type="text/css" media="all" />
 </head>
-
-<body>
-<ul>
-    <li>show user basic information</li>
-    <li>$userinfor[u'id']</li>
-    <li><a href="">begin action</a></li>
-    <li><a href="">current action</a></li>
-    <li><a href="">ask for money</a></li>
-    <li>......</li>
-</ul>
+<body >
+<div id="header" class="container">
+  <div id="logo">
+    <h1><a href="#">AApay</a></h1>
+  </div>
+  <div id="menu">
+    <ul>
+      <li class="current_page_item"><a href="#" accesskey="1" title="">首页</a></li>
+      <li><a href="#" accesskey="2" title="">发起活动</a></li>
+      <li><a href="#" accesskey="3" title="">当前进行的活动</a></li>
+      <li><a href="#" accesskey="4" title="">过去的活动</a></li>
+      <li><a href="#" accesskey="5" title="">催账</a></li>
+      <li><a href="#" accesskey="6" title="">联系我们</a></li>
+    </ul>
+  </div>
+</div>
+<div id="banner">
+  <div class="container" style="position:relative;left:-400px;bottom:-100px;"> <img src="images/用户头像.png"/> <br/>
+  
+   <small> <a href="#" target="_blank"> 关注：//返回的关注数</a><br />
+    <a href="#" target="_blank"> 粉丝：//返回的粉丝数</a><br />
+    <a href="#" target="_blank"> 微博：//返回的微博数</a><br /></small>
+  </div>
+  <div class="container">
+    <ul class="staff">
+      <li><a href="#" accesskey="7" title="当前进行的活动"><img src="images/当前进行的活动.png" alt="" /><br />
+        当前进行的活动</li>
+      <li><a href="#" accesskey="8" title="发起活动"><img src="images/发起活动.png" alt="" /><br />
+        发起活动</li>
+      <br />
+      <li><a href="#" accesskey="9" title="过去的活动"><img src="images/过去的活动.png" alt="" /><br />
+        过去的活动</li>
+      <li><a href="#" accesskey="10" title="联系我们"><img src="images/联系我们.png" alt="" /><br />
+        联系我们</li>
+    </ul>
+  </div>
+</div>
 </body>
 </html>
