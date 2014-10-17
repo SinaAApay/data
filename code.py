@@ -8,7 +8,8 @@ urls=(
         "/url","askforusercode",
         "/redirecturl","userindex",
         "/beginActivity","designActivity",
-        "/error","error"
+        "/error","error",
+        "/sendBeginWeibo","newclass.sendweibo"
     )
 
 render=web.template.render('static')
@@ -78,6 +79,7 @@ class designActivity:
             except:
                 web.SeeOther("/error")
 
+            web.setcookie("friendscount",len(friends))
             return render.designActivity(friends)
         else:
             web.seeother("https://api.weibo.com/oauth2/authorize?client_id=1063052666&redirect_uri=http://0.0.0.0:8080/redirecturl&response_type=code")

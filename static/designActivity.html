@@ -1,5 +1,5 @@
-<!DOCTYPE html>
 $def with(friends)
+<!DOCTYPE html>
 <html>
 		  <head>
 		  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -31,23 +31,23 @@ var pastname="";
             <div class="row clearfix">
               <div class="col-md-12 column">
                 <div class="row clearfix">
-                  <form role="form">
+                  <form role="form" action="/sendBeginWeibo" method="POST">
                     <div class="col-md-6 column">
                       <div class="form-group">
                         <label for="ActivityName">活动名称</label>
-                        <input type="" class="form-control" id="ActivityName" />
+                        <input type="" class="form-control" name="ActivityName" />
                       </div>
                       <div class="form-group">
                         <label for="ActivityMoney">活动总金额</label>
-                        <input type="" class="form-control" id="ActivityMoney" />
+                        <input type="" class="form-control" name="ActivityMoney" />
                       </div>
                       <div class="form-group">
                         <label for="ActivityTime">活动时间</label>
-                        <input type="" class="form-control" id="ActivityTime" />
+                        <input type="" class="form-control" name="ActivityTime" />
                       </div>
                       <div class="form-group">
                         <label for="ActivityPosition">活动地点</label>
-                        <input type="" class="form-control" id="ActivityPosition" />
+                        <input type="" class="form-control" name="ActivityPosition" />
                       </div>
                       <button type="submit" class="btn btn-default">发起活动</button>
                     </div>
@@ -56,7 +56,7 @@ var pastname="";
                         <ul>
                           $for name in friends:
                           <li>
-                            <input type='checkbox' name='VoteOption1' value= $name>
+                            <input type='checkbox' name='$friends.index(name)' value= "$name">
                             $name</li>
                         </ul>
                       </div>
