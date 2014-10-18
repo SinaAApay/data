@@ -1,54 +1,63 @@
 $def with(userinfor)
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title></title>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
-<link href="http://fonts.googleapis.com/css?family=News+Cycle:400,700" rel="stylesheet" />
-<link href="/static/default.css" rel="stylesheet" type="text/css" media="all" />
-<link href="/static/fonts.css" rel="stylesheet" type="text/css" media="all" />
 <link href="http://apps.bdimg.com/libs/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
 <script src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>
 <script src="http://apps.bdimg.com/libs/bootstrap/3.0.3/css/bootstrap-theme.min.css"></script>
 <script src="http://apps.bdimg.com/libs/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-
 </head>
 <body>
 <div id="header" class="container">
-  
-  <div class="col-md-12 column">
-      <h3 class="text-left">Sina AApay </h3>
-      <ul class="nav nav-tabs">
-        <li class="active"> <a href="#">首页</a> </li>
-        <li> <a href="/beginActivity">发起活动</a> </li>
-        <li> <a href="#">当前进行的活动</a> </li>
-        <li> <a href="#">过去的活动</a> </li>
-        <li> <a href="#">联系我们</a> </li>
-  
-      </ul>
+<div class="col-md-12 column">
+  <h3 class="text-left">Sina AApay </h3>
+  <ul class="nav nav-tabs">
+    <li class="active"> <a href="#">首页</a> </li>
+    <li> <a href="/beginActivity">发起活动</a> </li>
+    <li> <a href="#">当前进行的活动</a> </li>
+    <li> <a href="#">过去的活动</a> </li>
+    <li> <a href="#">联系我们</a> </li>
+  </ul>
 </div>
 <div id="banner">
-  <div class="container" style="position:relative;left:-400px;bottom:-100px;">
-      <img src="$userinfor[u'profile_image_url']"/>   <br/>
-      <a href="http://weibo.com">name: $userinfor[u'screen_name']</a><br/> 
-   <small> <a href="http://weibo.com" target="_blank"> 关注:$userinfor.friends_count</a><br />
-    <a href="http://weibo.com" target="_blank"> 粉丝：$userinfor.followers_count</a><br />
-    <a href="http://weibo.com" target="_blank"> 微博：$userinfor.statuses_count</a><br /></small>
-  </div>
   <div class="container">
-    <ul class="staff">
-      <li><a href="#" accesskey="7" title="当前进行的活动"><img src="/static/images/当前进行的活动.png" alt="" /><br />
-          当前进行的活动</li>
-      <li><a href="#" accesskey="8" title="发起活动"><img src="/static/images/发起活动.png" alt="" /><br />
-          发起活动</li>
+    <div class="row clearfix">
+      <div class="col-md-2 column"> 
       <br />
-      <li><a href="#" accesskey="9" title="过去的活动"><img src="/static/images/过去的活动.png" alt="" /><br />
-          过去的活动</li>
-      <li><a href="#" accesskey="10" title="联系我们"><img src="/static/images/联系我们.png" alt="" /><br />
-          联系我们</li>
-    </ul>
+      <br />
+      <br />
+      <br />
+      <img src="$userinfor[u'profile_image_url']"/> <br/>
+        <a href="http://weibo.com">name: $userinfor[u'screen_name']</a><br/>
+        <small> <a href="http://weibo.com" target="_blank"> 关注:$userinfor.friends_count</a><br />
+        <a href="http://weibo.com" target="_blank"> 粉丝：$userinfor.followers_count</a><br />
+        <a href="http://weibo.com" target="_blank"> 微博：$userinfor.statuses_count</a><br />
+        </small> </div>
+      <div class="col-md-3 column">
+      <br />
+      <br />
+        <ul >
+          <li><a href="#" accesskey="7" title="当前进行的活动"><img src="/static/images/当前进行的活动.png" alt="" /><br />
+            当前进行的活动</li>
+          <li><a href="#" accesskey="8" title="发起活动"><img src="/static/images/发起活动.png" alt="" /><br />
+            发起活动</li>
+          <br />
+        </ul>
+      </div>
+      <div class="col-md-3 column">
+      <br />
+      <br />
+        <ul>
+          <li><a href="#" accesskey="9" title="过去的活动"><img src="/static/images/过去的活动.png" alt="" /><br />
+            过去的活动</li>
+          <li><a href="#" accesskey="10" title="联系我们"><img src="/static/images/联系我们.png" alt="" /><br />
+            联系我们</li>
+        </ul>
+      </div>
+    </div>
   </div>
 </div>
 </body>
