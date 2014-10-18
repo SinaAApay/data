@@ -7,7 +7,7 @@ collections:users
     "uid":int//user's uid
     "activities"
     [
-        "weibo_id"://huodong id
+            "weibo_id"://huodong id
 
     ]
     }
@@ -26,9 +26,18 @@ collections:activitys:
         "uid":int//who begin the activity
         "weibo_id":int  //begin the game through this weibo
         "name"str://activity_name
-        "peoples":[str]//who invited to this activity
+        "peopleInvited":
+        [
+                "name":str//
+        ]
+        "peopleIn":
+        [
+            "name":str//"
+        ]
         "palce":str//where it happens
+        "ifbegin":bool
         "ifend":bool//if it end
+        "ifclose":false/true
         "money":str//the monkey
         "date":str
 
