@@ -2,6 +2,7 @@ import web
 import urllib,urllib2
 import weibo
 import pachong
+import newclass
 
 urls=(
         "/","index",
