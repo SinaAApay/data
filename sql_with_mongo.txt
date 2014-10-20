@@ -24,7 +24,7 @@ collections:activitys:
 {
     {
         "uid":int//who begin the activity
-        "weibo_id":int  //begin the game through this weibo
+        "weibo_id":str  //begin the game through this weibo
         "name"str://activity_name
         "peopleInvited":
         [

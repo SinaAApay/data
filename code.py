@@ -3,6 +3,7 @@ import urllib,urllib2
 import weibo
 import pachong
 import newclass
+import activity
 
 urls=(
         "/","index",
@@ -10,7 +11,8 @@ urls=(
         "/redirecturl","userindex",
         "/beginActivity","designActivity",
         "/error","error",
-        "/sendBeginWeibo","newclass.sendweibo"
+        "/sendBeginWeibo","newclass.sendweibo",
+        "/currentActivity","activity.currentActivity"
     )
 
 render=web.template.render('static')
@@ -63,12 +65,13 @@ class userindex:
         code=web.input(code="")
         userinfor=getAccesstokenAndSoOn(code)
         infor=userinfor[u'client'].users.show.get(uid=int(userinfor[u'uid']))
+        web.setcookie('screen_name',infor[u'screen_name'])
         return render.userindex(infor)
 
 class designActivity:
     def GET(self):
         if web.cookies()!=None:
-            cookies=web.cookies()
+            cookies=web.cookies('screen_name',infor[u'screen_name'])
             p=pachong.pachong()
             friends=[]
             i=2

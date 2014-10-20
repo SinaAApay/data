@@ -40,7 +40,7 @@ class sendweibo:
         activity={}
         activity[u'uid']=int(cookie[u'uid'])
         activity[u'name']=activityName
-        activity[u'weibo_id']=int(result[u'id'])
+        activity[u'weibo_id']=str(result[u'id'])
         activity[u'ifend']=False
         activity[u'place']=activityPosition
         activity[u'money']=activityMoney
@@ -65,7 +65,6 @@ class sendweibo:
             users.update({"uid":activity[u'uid']},{"$set":{'activities':acs}})
         
         web.SeeOther("http://weibo.com")
-        return render.activityList()
 
 
 

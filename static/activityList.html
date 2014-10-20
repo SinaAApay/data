@@ -27,20 +27,23 @@ $def with(activitysIN,activitysORG)
 <div class="container">
   <div class="row clearfix">
     <div class="col-md-12 column">
-      <div class="col-md-6 column"> //当前页面登陆者参与的活动
+      <div class="col-md-6 column">
         <ul>
           <li>
             <div class="panel-group" id="panel-153902">
               <div class="panel panel-default">
-                <div class="panel-heading"> <a class="panel-title" data-toggle="collapse" data-parent="#panel-153902" href="#$activitysIN.uid">参加的活动：$activitysIN.name</a> </div>
-                <div id="$activitysIN.uid" class="panel-collapse in">
-                  <div class="panel-body">
+                 $for ac in activitysIN:
+                    <div class="panel-heading"> <a class="panel-title"
+                            data-toggle="collapse" data-parent="#panel-153902"
+                    href="#$ac['uid']">参加的活动：$ac[u'name']</a> </div>
+                    <div id="$ac[u'uid']" class="panel-collapse in">
+                    <div class="panel-body">
                     <ul>
-                      <li>活动地点: $activitysIN.palce</li>
-                      <li>活动时间：$activitysIN.data</li>
-                      <li>活动总金额：$activitysIN.money</li>
+                      <li>活动地点: $ac[u'place']</li>
+                      <li>活动时间：$ac[u'date']</li>
+                      <li>活动总金额：$ac[u'money']</li>
                       <li>确认参加人员:</li>
-                      $for name in activitysIN.peopleIn:
+                      $for name in ac[u'peopleInvited']:
                       <li>$name</li>
                       <li>
                         <form >
@@ -49,27 +52,30 @@ $def with(activitysIN,activitysORG)
                         </form>
                       </li>
                     </ul>
-                  </div>
-                </div>
-              </div>
+                    </div>
+                    </div>
+                    </div>
             </div>
           </li>
         </ul>
       </div>
-      <div class="col-md-6 column"> //当前页面登陆者发起的活动
+      <div class="col-md-6 column"> 
         <ul>
-          <li>
-            <div class="panel-group" id="panel-72507">
-              <div class="panel panel-default">
-                <div class="panel-heading"> <a class="panel-title" data-toggle="collapse" data-parent="#panel-72507" href="#$activitysORG.uid">组织的活动：$activitysORG.name</a> </div>
-                <div id="$activitysORG.uid" class="panel-collapse in">
+            $for ac in activitysORG:
+                <li>
+                <div class="panel-group" id="panel-72507">
+                <div class="panel panel-default">
+                <div class="panel-heading"> <a class="panel-title"
+                        data-toggle="collapse" data-parent="#panel-72507"
+                href="#$ac['uid']">组织的活动：$ac[u'name']</a> </div>
+                <div id="$ac['uid']" class="panel-collapse in">
                   <div class="panel-body">
                     <ul>
-                      <li>活动地点: $activitysORG.palce</li>
-                      <li>活动时间：$activitysORG.data</li>
-                      <li>活动总金额：$activitysORG.money</li>
+                      <li>活动地点: $ac[u'place']</li>
+                      <li>活动时间：$ac[u'date']</li>
+                      <li>活动总金额：$ac[u'money']</li>
                       <li>确认参加人员:</li>
-                      $for name in activitysORG.peopleIn:
+                      $for name in ac['peopleInvited']:
                       <li>$name</li>
                       <li>
                         <form >
@@ -79,10 +85,10 @@ $def with(activitysIN,activitysORG)
                       </li>
                     </ul>
                   </div>
-                </div>
-              </div>
-            </div>
-          </li>
+                 </div>
+                 </div>
+                 </div>
+                </li>
         </ul>
       </div>
     </div>
