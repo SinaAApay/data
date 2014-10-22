@@ -3,7 +3,7 @@ $def with(activitysIN,activitysORG)
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title></title>
+<title>过去的活动</title>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <link href="http://apps.bdimg.com/libs/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
@@ -21,7 +21,6 @@ $def with(activitysIN,activitysORG)
     <li> <a href="/beginActivity">发起活动</a> </li>
     <li> <a href="/currentActivity">当前进行的活动</a> </li>
     <li class="active"> <a href="#">过去的活动</a> </li>
-    <li> <a href="#">联系我们</a> </li>
   </ul>
 </div>
 <div class="container">
@@ -31,13 +30,12 @@ $def with(activitysIN,activitysORG)
         <ul>
           <li>
             <div class="panel-group" id="panel-153902">
-              <div class="panel panel-default">
-                 $for ac in activitysIN:
-                    <div class="panel-heading"> <a class="panel-title"
+              <div class="panel panel-default"> $for ac in activitysIN:
+                <div class="panel-heading"> <a class="panel-title"
                             data-toggle="collapse" data-parent="#panel-153902"
                     href="#$ac['uid']">参加的活动：$ac[u'name']</a> </div>
-                    <div id="$ac[u'uid']" class="panel-collapse in">
-                    <div class="panel-body">
+                <div id="$ac[u'uid']" class="panel-collapse in">
+                  <div class="panel-body">
                     <ul>
                       <li>活动地点: $ac[u'place']</li>
                       <li>活动时间：$ac[u'date']</li>
@@ -46,19 +44,19 @@ $def with(activitysIN,activitysORG)
                       $for name in ac[u'peopleIn']:
                       <li>$name</li>
                     </ul>
-                    </div>
-                    </div>
-                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </li>
         </ul>
       </div>
-      <div class="col-md-6 column"> 
+      <div class="col-md-6 column">
         <ul>
-            $for ac in activitysORG:
-                <li>
-                <div class="panel-group" id="panel-72507">
-                <div class="panel panel-default">
+          $for ac in activitysORG:
+          <li>
+            <div class="panel-group" id="panel-72507">
+              <div class="panel panel-default">
                 <div class="panel-heading"> <a class="panel-title"
                         data-toggle="collapse" data-parent="#panel-72507"
                 href="#$ac['uid']">组织的活动：$ac[u'name']</a> </div>
@@ -73,13 +71,18 @@ $def with(activitysIN,activitysORG)
                       <li>$name</li>
                     </ul>
                   </div>
-                 </div>
-                 </div>
-                 </div>
-                </li>
+                </div>
+              </div>
+            </div>
+          </li>
         </ul>
       </div>
     </div>
+  </div>
+  <div style=" position: relative;bottom:-150px" >
+    <hr style="height:2px">
+    <div style="text-align:right"> <a href="#">联系我们</a> </div>
+    <p style="text-align: center;">SinaAAPay仅提供一个发布活动的平台，对任何法律问题及风险不承担任何责任。</p>
   </div>
 </div>
 </body>
