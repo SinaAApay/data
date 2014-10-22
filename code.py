@@ -8,7 +8,7 @@ import activity
 urls=(
         "/","index",
         "/url","askforusercode",
-        "/redirecturl","userindex",
+        "/redirecturl","getCodeSetCookie",
         "/beginActivity","designActivity",
         "/error","error",
         "/sendBeginWeibo","newclass.sendweibo",
@@ -67,21 +67,24 @@ class askforusercode:
     def GET(self):
         web.seeother("https://api.weibo.com/oauth2/authorize?client_id=1063052666&redirect_uri=http://0.0.0.0:8080/redirecturl&response_type=code")
 
-class userindex:
+
+class getCodeSetCookie:
     def GET(self):
         code=web.input(code="")
-        if len(code)<1:
+        if len(code[u'code'])>1:
             userinfor=getAccesstokenAndSoOn(code)
             infor=userinfor[u'client'].users.show.get(uid=int(userinfor[u'uid']))
             web.setcookie('screen_name',infor[u'screen_name'])
-        else:
-            cookies=web.cookies()
-            ac=cookies[u'access_token']
-            expires_in=cookies[u'expires_in']
-            client=getClient(ac,expires_in)
-            infor=client.users.show.get(uid=int(cookies[u'uid']))
+        
+        web.seeother("/userindex")
 
-            
+class userindex:
+    def GET(self):
+        cookies=web.cookies()
+        ac=cookies[u'access_token']
+        expires_in=cookies[u'expires_in']
+        client=getClient(ac,expires_in)
+        infor=client.users.show.get(uid=int(cookies[u'uid']))
         return render.userindex(infor)
 
 class designActivity:
