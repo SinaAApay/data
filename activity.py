@@ -47,4 +47,55 @@ class pastActivity:
 
         return render.pastActivity(activityIn,activityORG)
 
+class startActivity:
+    def POST(self):
+        webinput=web.input()
+        weibo_id=webinput[u'weibo_id']
+        ac=activities.find_one({u'weibo_id':weibo_id})
+        ifbegin=True
+        for people in ac[u'peopleInvited']:
+            if (people in ac[u'peopleIn'])==False:
+                ifbegin=False
+                break
+        if ifbegin:
+            activities.update({u'weibo_id':weibo_id},{'$set',{u'ifbegin':True}})
+            web.seeother("/currentActivity")
+        else:
+            web.seeother("/currentActivity")
+
+
+
+class endActivity:
+    def POST(self):
+        webinput=web.input()
+        weibo_id=webinput[u'weibo_id']
+        ac=activities.find_one({u'weibo_id':weibo_id})
+        if ac[u'ifbegin']==True:
+            activities.update({u'weibo_id':weibo_id},{"$set",{u'ifend':True}})
+            web.seeother("/pastActivity")
+        else:
+            web.seeother("/currentActivity")
+
+class attendActivity:
+    def POST(self):
+        webinput=web.input()
+        weibo_id=webinput[u'weibo_id']
+        ac=activities.find_one({u'weibo_id':weibo_id})
+        cookies=web.cookies()
+        name=cookies[u'screen_name']
+        if name in ac[u'peopleIn']:
+            web.seeother("/currentActivity")
+        else:
+            peopleIn=ac[u'peopleIn']
+            peopleIn.append(name)
+            activities.update({u'weibo_id':weibo_id},{"$set",{u'peopleIn':peopleIn}})
+            web.seeother("/currentActivity")
+
+
+class refuseActivity:
+    def POST(self):
+        webinput=web.input()
+        weibo_id=webinput[u'weibo_id']
+        activities.update({u'weibo_id':weibo_id},{"$set",{u'ifclose':True}})
+        web.seeother("/currentActivity")
 
