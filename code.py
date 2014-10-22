@@ -12,7 +12,9 @@ urls=(
         "/beginActivity","designActivity",
         "/error","error",
         "/sendBeginWeibo","newclass.sendweibo",
-        "/currentActivity","activity.currentActivity"
+        "/currentActivity","activity.currentActivity",
+        "/pastActivity","activity.pastActivity",
+        "/userindex","userindex"
     )
 
 render=web.template.render('static')
@@ -63,15 +65,24 @@ class askforusercode:
 class userindex:
     def GET(self):
         code=web.input(code="")
-        userinfor=getAccesstokenAndSoOn(code)
-        infor=userinfor[u'client'].users.show.get(uid=int(userinfor[u'uid']))
-        web.setcookie('screen_name',infor[u'screen_name'])
+        if len(code)<1:
+            userinfor=getAccesstokenAndSoOn(code)
+            infor=userinfor[u'client'].users.show.get(uid=int(userinfor[u'uid']))
+            web.setcookie('screen_name',infor[u'screen_name'])
+        else:
+            cookies=web.cookies()
+            ac=cookies[u'access_token']
+            expires_in=cookies[u'expires_in']
+            client=getClient(ac,expires_in)
+            infor=client.users.show.get(uid=int(cookies[u'uid']))
+
+            
         return render.userindex(infor)
 
 class designActivity:
     def GET(self):
         if web.cookies()!=None:
-            cookies=web.cookies('screen_name',infor[u'screen_name'])
+            cookies=web.cookies()
             p=pachong.pachong()
             friends=[]
             i=2

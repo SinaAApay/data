@@ -19,8 +19,8 @@ $def with(activitysIN,activitysORG)
   <ul class="nav nav-tabs">
     <li> <a href="/userindex">首页</a> </li>
     <li> <a href="/beginActivity">发起活动</a> </li>
-    <li  class="active"> <a href="#">当前进行的活动</a> </li>
-    <li> <a href="#">过去的活动</a> </li>
+    <li> <a href="/currentActivity">当前进行的活动</a> </li>
+    <li class="active"> <a href="#">过去的活动</a> </li>
     <li> <a href="#">联系我们</a> </li>
   </ul>
 </div>
@@ -45,12 +45,6 @@ $def with(activitysIN,activitysORG)
                       <li>确认参加人员:</li>
                       $for name in ac[u'peopleInvited']:
                       <li>$name</li>
-                      <li>
-                        <form >
-                          <button type="button" class="btn btn-default">确认参加</button>
-                          <button type="button" class="btn btn-default">退出此活动</button>
-                        </form>
-                      </li>
                     </ul>
                     </div>
                     </div>
@@ -77,12 +71,6 @@ $def with(activitysIN,activitysORG)
                       <li>确认参加人员:</li>
                       $for name in ac['peopleInvited']:
                       <li>$name</li>
-                      <li>
-                        <form >
-                          <button type="button" class="btn btn-default">开始活动</button>
-                          <button type="button" class="btn btn-default">确认活动完成</button>
-                        </form>
-                      </li>
                     </ul>
                   </div>
                  </div>
