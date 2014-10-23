@@ -30,20 +30,21 @@ $def with(activitysIN,activitysORG)
         <ul>
           <li>
             <div class="panel-group" id="panel-153902">
-              <div class="panel panel-default"> $for ac in activitysIN:
-                <div class="panel-heading"> <a class="panel-title"
-                            data-toggle="collapse" data-parent="#panel-153902"
-                    href="#$ac['uid']">参加的活动：$ac[u'name']</a> </div>
-                <div id="$ac[u'uid']" class="panel-collapse in">
-                  <div class="panel-body">
-                    <ul>
+              <div class="panel panel-default"> 
+                  $for ac in activitysIN:
+                      <div class="panel-heading"> <a class="panel-title"
+                              data-toggle="collapse"
+                      data-parent="#panel-153902" href="#$ac['weibo_id']">参加的活动：$ac[u'name']</a> </div>
+                      <div id="$ac[u'weibo_id']" class="panel-collapse in">
+                      <div class="panel-body">
+                      <ul>
                       <li>活动地点: $ac[u'place']</li>
                       <li>活动时间：$ac[u'date']</li>
                       <li>活动总金额：$ac[u'money']</li>
                       <li>参加人员:</li>
-                      $for name in ac[u'peopleIn']:
-                      <li>$name</li>
-                    </ul>
+                          $for name in ac[u'peopleIn']:
+                              <li>$name</li>
+                     </ul>
                   </div>
                 </div>
               </div>
@@ -59,8 +60,8 @@ $def with(activitysIN,activitysORG)
               <div class="panel panel-default">
                 <div class="panel-heading"> <a class="panel-title"
                         data-toggle="collapse" data-parent="#panel-72507"
-                href="#$ac['uid']">组织的活动：$ac[u'name']</a> </div>
-                <div id="$ac['uid']" class="panel-collapse in">
+                href="#$ac['weibo_id']">组织的活动：$ac[u'name']</a> </div>
+                  <div id="$ac['weibo_id']" class="panel-collapse in">
                   <div class="panel-body">
                     <ul>
                       <li>活动地点: $ac[u'place']</li>

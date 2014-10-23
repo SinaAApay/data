@@ -34,6 +34,7 @@ class sendweibo:
         for name in namelist:
             status+=" @"+name
         result=client.statuses.update.post(status=status)
+        namelist.append(str(cookie[u'screen_name']))
         con=pymongo.Connection("localhost",27017)
         db=con.aapay
         activities=db.activities
@@ -46,7 +47,9 @@ class sendweibo:
         activity[u'money']=activityMoney
         activity[u'date']=activityTime
         activity[u'peopleInvited']=namelist
-        activity[u'peopleIn']=[]
+        peopleIn=[]
+        peopleIn.append(str(cookie[u'screen_name']))
+        activity[u'peopleIn']=peopleIn
         activity[u'ifclose']=False
         activity[u'ifbegin']=False
         activities.insert(activity)

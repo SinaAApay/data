@@ -34,8 +34,8 @@ $def with(activitysIN,activitysORG)
                  $for ac in activitysIN:
                     <div class="panel-heading"> <a class="panel-title"
                             data-toggle="collapse" data-parent="#panel-153902"
-                    href="#$ac['uid']">参加的活动：$ac[u'name']</a> </div>
-                    <div id="$ac[u'uid']" class="panel-collapse in">
+                    href="#$ac[u'weibo_id']">参加的活动：$ac[u'name']</a> </div>
+                    <div id="$ac[u'weibo_id']" class="panel-collapse in">
                     <div class="panel-body">
                     <ul>
                       <li>活动地点: $ac[u'place']</li>
@@ -74,8 +74,8 @@ $def with(activitysIN,activitysORG)
                 <div class="panel panel-default">
                 <div class="panel-heading"> <a class="panel-title"
                         data-toggle="collapse" data-parent="#panel-72507"
-                href="#$ac['uid']">组织的活动：$ac[u'name']</a> </div>
-                <div id="$ac['uid']" class="panel-collapse in">
+                href="#$ac['weibo_id']">组织的活动：$ac[u'name']</a> </div>
+                <div id="$ac['weibo_id']" class="panel-collapse in">
                   <div class="panel-body">
                     <ul>
                       <li>活动地点: $ac[u'place']</li>
