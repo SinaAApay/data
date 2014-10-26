@@ -1,10 +1,14 @@
+# -*- coding:utf-8 -*-
+import os,sys
+path = os.path.dirname(os.path.realpath(__file__))
+sys.path.append(path)
 import web
 import urllib,urllib2
 import weibo
 import pachong
 import newclass
 import activity
-
+from getclient import getClient
 urls=(
         "/","index",
         "/url","askforusercode",
@@ -18,19 +22,20 @@ urls=(
         "/startActivity","activity.startActivity",
         "/endActivity","activity.endActivity",
         "/attendActivity","activity.attendActivity",
-        "/refuseActivity","activity.refuseActivity"
+        "/refuseActivity","activity.refuseActivity",
+        "/us","us"
 
     )
 
-render=web.template.render('static')
+render=web.template.render('/var/www/AA/static')
 
 app=web.application(urls,globals())
-
+application=app.wsgifunc()
 def getAccesstokenAndSoOn(code):
     #print code
     appkey='1063052666'
     appsecret='c7d48410f4c03b87d5319edf5d544fd6'
-    redirecturl='http://0.0.0.0:8080/redirecturl'
+    redirecturl='http://123.57.11.233/AA/redirecturl'
     client=weibo.APIClient(app_key=appkey,app_secret=appsecret,redirect_uri=redirecturl)
     r=client.request_access_token(str(code[u'code']))
     web.setcookie('uid',r.uid)
@@ -42,19 +47,12 @@ def getAccesstokenAndSoOn(code):
     userinfor[u'client']=client
     return userinfor
 
-def getClient(access_token,expires_in):
-    appkey='1063052666'
-    appsecret='c7d48410f4c03b87d5319edf5d544fd6'
-    redirecturl='http://0.0.0.0:8080/redirecturl'
-    client=weibo.APIClient(app_key=appkey,app_secret=appsecret,redirect_uri=redirecturl)
-    try:
-        client.set_access_token(access_token,expires_in)
-        return client
-    except:
-        web.seeother("https://api.weibo.com/oauth2/authorize?client_id=1063052666&redirect_uri=http://0.0.0.0:8080/redirecturl&response_type=code")
-#in case accesstoken overtime
+class us:
+    def GET(self):
+        return render.us()
 
-    
+
+
 class error:
     def GET(self):
         return "Sorry,some errors happened,please email us weiyanjie@gmail.com"
@@ -65,7 +63,7 @@ class index:
  
 class askforusercode:
     def GET(self):
-        web.seeother("https://api.weibo.com/oauth2/authorize?client_id=1063052666&redirect_uri=http://0.0.0.0:8080/redirecturl&response_type=code")
+        web.seeother("https://api.weibo.com/oauth2/authorize?client_id=1063052666&redirect_uri=http://123.57.11.233/AA/redirecturl&response_type=code")
 
 
 class getCodeSetCookie:
@@ -105,7 +103,7 @@ class designActivity:
             web.setcookie("friendscount",len(friends))
             return render.designActivity(friends)
         else:
-            web.seeother("https://api.weibo.com/oauth2/authorize?client_id=1063052666&redirect_uri=http://0.0.0.0:8080/redirecturl&response_type=code")
+            web.seeother("https://api.weibo.com/oauth2/authorize?client_id=1063052666&redirect_uri=http://123.57.11.233/AA/redirecturl&response_type=code")
 
 
 

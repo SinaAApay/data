@@ -1,5 +1,5 @@
 import web
-from code import getClient
+from getclient import getClient
 import pymongo
 
 
@@ -30,7 +30,7 @@ class sendweibo:
         exp=cookie[u'expires_in']
         uid=cookie[u'uid']
         client=getClient(ac,exp)
-        status="I invite you all to a activity:"+activityName+",place:"+activityPosition+",time:"+activityTime+",money for each person:"+str(moneyforeach)+"."
+        status=u"\u6211\u9080\u8bf7\u4f60\u4eec\u53c2\u52a0\u4e00\u4e2a\u6d3b\u52a8:"+activityName+u",\u5730\u70b9:"+activityPosition+u",\u65f6\u95f4:"+activityTime+u",\u6bcf\u4e2a\u4eba\u9700\u0041\u0041\u7684\u91d1\u989d:"+str(moneyforeach)+"."+u"\u70b9\u51fb\u4e0b\u9762\u94fe\u63a5\u53c2\u52a0\u6d3b\u52a8\u54e6\uff1a: "+"http://123.57.11.233/AA "
         for name in namelist:
             status+=" @"+name
         result=client.statuses.update.post(status=status)
