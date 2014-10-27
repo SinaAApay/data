@@ -18,7 +18,8 @@ urls=(
         "/startActivity","activity.startActivity",
         "/endActivity","activity.endActivity",
         "/attendActivity","activity.attendActivity",
-        "/refuseActivity","activity.refuseActivity"
+        "/refuseActivity","activity.refuseActivity",
+        "/us","us"
 
     )
 
@@ -54,7 +55,12 @@ def getClient(access_token,expires_in):
         web.seeother("https://api.weibo.com/oauth2/authorize?client_id=1063052666&redirect_uri=http://0.0.0.0:8080/redirecturl&response_type=code")
 #in case accesstoken overtime
 
-    
+class us:
+    def GET(self):
+        return render.us()
+
+
+
 class error:
     def GET(self):
         return "Sorry,some errors happened,please email us weiyanjie@gmail.com"
