@@ -17,10 +17,10 @@ $def with(activitysIN,activitysORG)
 <div class="col-md-12 column">
   <h3 class="text-left">Sina AApay </h3>
   <ul class="nav nav-tabs">
-    <li> <a href="/userindex">首页</a> </li>
-    <li> <a href="/beginActivity">发起活动</a> </li>
+    <li> <a href="userindex">首页</a> </li>
+    <li> <a href="beginActivity">发起活动</a> </li>
     <li  class="active"> <a href="#">当前进行的活动</a> </li>
-    <li> <a href="/pastActivity">过去的活动</a> </li>
+    <li> <a href="pastActivity">过去的活动</a> </li>
   </ul>
 </div>
 <div class="container">
@@ -28,11 +28,11 @@ $def with(activitysIN,activitysORG)
     <div class="col-md-12 column">
       <div class="col-md-6 column">
         <ul>
-          <li>
-            <div class="panel-group" id="panel-153902">
-              <div class="panel panel-default">
-                 $for ac in activitysIN:
-                    <div class="panel-heading"> <a class="panel-title"
+                $for ac in activitysIN[::-1]:
+                   <li>
+                   <div class="panel-group" id="panel-153902">
+                   <div class="panel panel-default">
+                                     <div class="panel-heading"> <a class="panel-title"
                             data-toggle="collapse" data-parent="#panel-153902"
                     href="#$ac[u'weibo_id']">参加的活动：$ac[u'name']</a> </div>
                     <div id="$ac[u'weibo_id']" class="panel-collapse in">
@@ -47,12 +47,13 @@ $def with(activitysIN,activitysORG)
                             <li>$name</li>
                             </ul>
                       <li>
-                        <form action="/attendActivity" method="POST">
+                        <form action="attendActivity" method="POST">
                           <button type="submit" class="btn btn-default"
                               name="weibo_id" value="$ac[u'weibo_id']">确认参加</button>
                         </form>
+		      </li>
                       <li>
-                        <form action="/refuseActivity" method="POST">
+                        <form action="refuseActivity" method="POST">
                           <button type="submit" class="btn btn-default"
                               name="weibo_id" value="$ac[u'weibo_id']">退出此活动</button>
                         </form>
@@ -68,7 +69,7 @@ $def with(activitysIN,activitysORG)
       </div>
       <div class="col-md-6 column"> 
         <ul>
-            $for ac in activitysORG:
+            $for ac in activitysORG[::-1]:
                 <li>
                 <div class="panel-group" id="panel-72507">
                 <div class="panel panel-default">
@@ -91,14 +92,14 @@ $def with(activitysIN,activitysORG)
                       $else:
                             <li>state:began</li>
                       <li>      
-                        <form action="/startActivity" method="POST">
+                        <form action="startActivity" method="POST">
                           <button type="submit" value="$ac[u'weibo_id']"
                               class="btn btn-default" name="weibo_id">开始活动</button>
                         </form>
 
                       </li>
                       <li>      
-                        <form action="/endActivity" method="POST">
+                        <form action="endActivity" method="POST">
                           <button type="submit" class="btn btn-default"
                               name="weibo_id" value="$ac[u'weibo_id']" >确认活动完成</button>
                         </form>
@@ -117,7 +118,7 @@ $def with(activitysIN,activitysORG)
   </div>
   <div style=" position: relative;bottom:-100px" >
     <hr style="height:2px">
-    <div style="text-align:right"> <a href="/us">联系我们</a> </div>
+    <div style="text-align:right"> <a href="us">联系我们</a> </div>
     <p style="text-align: center;">SinaAAPay仅提供一个发布活动的平台，对任何法律问题及风险不承担任何责任。</p>
   </div>
 </div>
