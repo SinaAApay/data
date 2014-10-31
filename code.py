@@ -27,15 +27,15 @@ urls=(
 
     )
 
-render=web.template.render('/var/www/AA/static')
+render=web.template.render('/home/rw/workplace/aapay/data/static')
 
 app=web.application(urls,globals())
 application=app.wsgifunc()
 def getAccesstokenAndSoOn(code):
     #print code
-    appkey='1063052666'
-    appsecret='c7d48410f4c03b87d5319edf5d544fd6'
-    redirecturl='http://123.57.11.233/AA/redirecturl'
+    appkey='3541987275'
+    appsecret='9e2cca6d2f735a7ebee4999ac6608231'
+    redirecturl='http://0.0.0.0:8080/redirecturl'
     client=weibo.APIClient(app_key=appkey,app_secret=appsecret,redirect_uri=redirecturl)
     r=client.request_access_token(str(code[u'code']))
     web.setcookie('uid',r.uid)
@@ -63,7 +63,7 @@ class index:
  
 class askforusercode:
     def GET(self):
-        web.seeother("https://api.weibo.com/oauth2/authorize?client_id=1063052666&redirect_uri=http://123.57.11.233/AA/redirecturl&response_type=code")
+        web.seeother("https://api.weibo.com/oauth2/authorize?client_id=3541987275&redirect_uri=http://0.0.0.0:8080/redirecturl&response_type=code")
 
 
 class getCodeSetCookie:
@@ -103,8 +103,7 @@ class designActivity:
             web.setcookie("friendscount",len(friends))
             return render.designActivity(friends)
         else:
-            web.seeother("https://api.weibo.com/oauth2/authorize?client_id=1063052666&redirect_uri=http://123.57.11.233/AA/redirecturl&response_type=code")
-
+            web.seeother("https://api.weibo.com/oauth2/authorize?client_id=3541987275&redirect_uri=http://0.0.0.0:8080/redirecturl&response_type=code")
 
 
 if __name__=="__main__":

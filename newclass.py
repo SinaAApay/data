@@ -3,7 +3,7 @@ from getclient import getClient
 import pymongo
 
 
-render=web.template.render('static')
+render=web.template.render('/home/rw/workplace/aapay/data/static')
 
 
 class sendweibo:
