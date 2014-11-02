@@ -23,7 +23,8 @@ urls=(
         "/endActivity","activity.endActivity",
         "/attendActivity","activity.attendActivity",
         "/refuseActivity","activity.refuseActivity",
-        "/us","us"
+        "/us","us",
+        "/deletePastActivity","activity.deletePastActivity"
 
     )
 

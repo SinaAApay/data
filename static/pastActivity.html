@@ -47,6 +47,14 @@ $def with(activitysIN,activitysORG)
                             <ul>
                             <li>$name</li>
                             </ul>
+                      <li>
+                      <form action="/deletePastActivity" method="POST">
+                          <button type="submit" value="$ac[u'weibo_id']"
+                              name="weibo_id">
+                              delete this activity
+                          </button>
+                      </form>
+                      </li>
                     </ul>
                     </div>
                     </div>
@@ -75,6 +83,16 @@ $def with(activitysIN,activitysORG)
                       $for name in ac['peopleIn']:
                       <li>$name</li>
                   </ul>
+                  
+                  <li>
+                      <form action="/deletePastActivity" method="POST">
+                          <button type="submit" value="$ac[u'weibo_id']"
+                              name="weibo_id">
+                              delete this activity
+                          </button>
+                      </form>
+                      </li>
+
 
                     </ul>
                   </div>
