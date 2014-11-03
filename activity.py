@@ -46,23 +46,26 @@ class pastActivity:
         activityORG=[]
         uid=int(cookie[u'uid'])
         user=users.find_one({'uid':uid})
-        if user!=None:
-            for ac in user[u'activities']:
-                a_activity=activities.find_one({u'weibo_id':ac})
-                if a_activity[u'ifend']==True:
-                    activityORG.append(a_activity)
-        #name=cookie[u'screen_name']
-	ac=cookie[u'access_token']
+        ac=cookie[u'access_token']
 	exp=cookie[u'expires_in']
 	client=getClient(ac,exp)
 	infor=client.users.show.get(uid=int(cookie[u'uid']))
 	name=infor[u'screen_name']
 
+        if user!=None:
+            for ac in user[u'activities']:
+                a_activity=activities.find_one({u'weibo_id':ac})
+                if a_activity[u'ifend']==True:
+                    if name in a_activity[u'peopleIn']:
+                        activityORG.append(a_activity)
+        #name=cookie[u'screen_name']
+	
         for ac in activities.find():
             if name in ac[u'peopleIn']:
                 if ac[u'ifend']==True:
                     if (ac in activityORG)==False:
-                        activityIn.append(ac)
+                        if name in ac[u'peopleIn']:
+                            activityIn.append(ac)
 
         return render.pastActivity(activityIn,activityORG)
 
@@ -114,7 +117,8 @@ class attendActivity:
             peopleIn=ac[u'peopleIn']
             peopleIn.append(name)
             activities.update({u'weibo_id':weibo_id},{"$set":{u'peopleIn':peopleIn}})
-            web.seeother("/currentActivity")
+            web.seeother("http://alipay.com")
+            #web.seeother("/currentActivity")
 
 
 class refuseActivity:
@@ -123,4 +127,30 @@ class refuseActivity:
         weibo_id=webinput[u'weibo_id']
         activities.update({u'weibo_id':weibo_id},{"$set":{u'ifclose':True}})
         web.seeother("/currentActivity")
+
+
+class deletePastActivity:
+    def POST(self):
+        cookie=web.cookies()
+        webinput=web.input()
+        weibo_id=webinput[u'weibo_id']
+        uid=int(cookie[u'uid'])
+        ac=cookie[u'access_token']
+	exp=cookie[u'expires_in']
+	client=getClient(ac,exp)
+	infor=client.users.show.get(uid=int(cookie[u'uid']))
+	name=infor[u'screen_name']
+        a=activities.find_one({u"weibo_id":weibo_id})
+        peopleIn=a[u'peopleIn']
+        if name in peopleIn:
+            peopleIn.remove(name)
+        if len(peopleIn)==0:
+            activities.remove({u'weibo_id':weibo_id})
+            user=users.find_one({u'uid':a[u'uid']})
+            acids=user[u'activities']
+            acids.remove(weibo_id)
+            users.update({u'uid':a[u'uid']},{"$set":{u'activities':acids}})
+        else:
+            activities.update({u'weibo_id':weibo_id},{"$set":{u'peopleIn':peopleIn}})
+        web.seeother("/pastActivity")
 
