@@ -9,6 +9,11 @@ import pachong
 import newclass
 import activity
 from getclient import getClient
+import pymongo
+con=pymongo.Connection("localhost",27017)
+db=con.aapay
+activities=db.activities
+users=db.users
 urls=(
         "/","index",
         "/url","askforusercode",
@@ -84,7 +89,14 @@ class userindex:
         expires_in=cookies[u'expires_in']
         client=getClient(ac,expires_in)
         infor=client.users.show.get(uid=int(cookies[u'uid']))
-        return render.userindex(infor)
+        uid=int(cookies[u"uid"])
+        informations=[]
+        user=users.find_one({u"uid":uid})
+        if user==None:
+            informations.append("hello")
+        else:
+            informations=user[u"informations"]
+        return render.userindex(infor,informations)
 
 class designActivity:
     def GET(self):

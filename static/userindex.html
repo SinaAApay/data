@@ -1,4 +1,4 @@
-$def with(userinfor)
+$def with(userinfor,informations)
 <!DOCTYPE html>
 
 <head>
@@ -63,8 +63,8 @@ $def with(userinfor)
 				</div>
 				<div class="panel-body">
                 <ul>
-                $for XXX in XXXXXX:
-                <li>$XXX</li>
+                $for information in informations[::-1]:
+                    <li>$information</li>
                 </ul>
 				</div>
 			</div>

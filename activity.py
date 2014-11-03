@@ -11,6 +11,15 @@ con=pymongo.Connection('localhost',27017)
 db=con.aapay
 activities=db.activities
 users=db.users
+def refreshInformations(informations,string):
+    if len(informations)<5:
+        informations.append(string)
+    else:
+        del informations[0]
+        informations.insert(4,string)
+    return informations
+
+
 
 class currentActivity:
     def GET(self):
@@ -116,6 +125,11 @@ class attendActivity:
         else:
             peopleIn=ac[u'peopleIn']
             peopleIn.append(name)
+            string=name+u"\u53c2\u52a0\u4e86\u6d3b\u52a8\u003a"+":"+ac[u'name']
+            user=users.find_one({u"uid":ac[u'uid']})
+            informations=user[u'informations']
+            informations=refreshInformations(informations,string)
+            users.update({u"uid":ac[u"uid"]},{"$set":{u"informations":informations}})
             activities.update({u'weibo_id':weibo_id},{"$set":{u'peopleIn':peopleIn}})
             web.seeother("http://alipay.com")
             #web.seeother("/currentActivity")
@@ -123,8 +137,21 @@ class attendActivity:
 
 class refuseActivity:
     def POST(self):
+        cookie=web.cookies()
         webinput=web.input()
+        acc=cookie[u'access_token']
+	exp=cookie[u'expires_in']
+	client=getClient(acc,exp)
+	infor=client.users.show.get(uid=int(cookie[u'uid']))
+	name=infor[u'screen_name']
         weibo_id=webinput[u'weibo_id']
+        ac=activities.find_one({u'weibo_id':weibo_id})
+        user=users.find_one({u"uid":ac[u'uid']})
+        string=name+u"\u62d2\u7edd\u53c2\u52a0\u6d3b\u52a8\uff1a"+ac[u'name']+u"\uff0c\u6d3b\u52a8\u5df2\u7ecf\u5173\u95ed"+"."
+        informations=user[u'informations']
+        informations=refreshInformations(informations,string)
+        users.update({u"uid":ac[u"uid"]},{"$set":{u"informations":informations}})
+
         activities.update({u'weibo_id':weibo_id},{"$set":{u'ifclose':True}})
         web.seeother("/currentActivity")
 
@@ -153,4 +180,6 @@ class deletePastActivity:
         else:
             activities.update({u'weibo_id':weibo_id},{"$set":{u'peopleIn':peopleIn}})
         web.seeother("/pastActivity")
+
+
 
