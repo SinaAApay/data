@@ -38,9 +38,9 @@ $def with(userinfor)
       <div class="col-md-3 column"> <br />
         <br />
         <ul >
-          <li><a href="/currentActivity" accesskey="7" title="当前进行的活动"><img src="/static/images/当前进行的活动.png" alt="" /><br />
+          <li><a href="/currentActivity" accesskey="7" title="当前进行的活动"><img src="/static/images/当前进行的活动.png" alt="" /></a><br />
             当前进行的活动</li>
-          <li><a href="/beginActivity" accesskey="8" title="发起活动"><img src="/static/images/发起活动.png" alt="" /><br />
+          <li><a href="/beginActivity" accesskey="8" title="发起活动"><img src="/static/images/发起活动.png" alt="" /></a><br />
             发起活动</li>
           <br />
         </ul>
@@ -48,17 +48,32 @@ $def with(userinfor)
       <div class="col-md-3 column"> <br />
         <br />
         <ul>
-          <li><a href="/pastActivity" accesskey="9" title="过去的活动"><img src="/static/images/过去的活动.png" alt="" /><br />
+          <li><a href="/pastActivity" accesskey="9" title="过去的活动"><img src="/static/images/过去的活动.png" alt="" /></a><br />
             过去的活动</li>
-          <li><a href="/us" accesskey="10" title="联系我们"><img src="/static/images/联系我们.png" alt="" /><br />
+          <li><a href="/us" accesskey="10" title="联系我们"><img src="/static/images/联系我们.png" alt="" /></a><br />
             联系我们</li>
         </ul>
+      </div>
+      <div class="col-md-4 column">
+      <div class="panel panel-info">
+				<div class="panel-heading">
+					<h3 class="panel-title">
+						信息栏
+					</h3>
+				</div>
+				<div class="panel-body">
+                <ul>
+                $for XXX in XXXXXX:
+                <li>$XXX</li>
+                </ul>
+				</div>
+			</div>
       </div>
     </div>
   </div>
   <div style=" position: relative;bottom:-150px" >
     <hr style="height:2px">
-    <div style="text-align:right"> <a href="#">联系我们</a> </div>
+    <div style="text-align:right"> <a href="/us">联系我们</a> </div>
     <p style="text-align: center;">SinaAAPay仅提供一个发布活动的平台，对任何法律问题及风险不承担任何责任。</p>
   </div>
 </div>
