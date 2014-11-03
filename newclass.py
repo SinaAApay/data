@@ -61,6 +61,7 @@ class sendweibo:
             acs=[]
             acs.append(activity[u'weibo_id'])
             user[u'activities']=acs
+            user[u'informations']=["Hello!"]
             users.insert(user)
         else:
             acs=userinfor[u'activities']
