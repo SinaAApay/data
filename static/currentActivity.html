@@ -46,12 +46,27 @@ $def with(activitysIN,activitysORG)
                             <ul>
                             <li>$name</li>
                             </ul>
-                      <li>
+                       <ul>
+                      $for name in ac['peopleIn']:
+                      <li>$name</li>
+                  </ul>
+                      $if ac[u'ifbegin']==False:
+                            <li>state:wait to begin</li>
+                      $else:
+                            <li>state:began</li>
+                    <li>
                         <form action="attendActivity" method="POST">
                           <button type="submit" class="btn btn-default"
                               name="weibo_id" value="$ac[u'weibo_id']">确认参加</button>
                         </form>
 		      </li>
+              <li>
+                        <form action="payonline" method="POST">
+                          <button type="submit" class="btn btn-default"
+                              name="weibo_id" value="$ac[u'weibo_id']">线上付款</button>
+                        </form>
+
+                      </li>
                       <li>
                         <form action="refuseActivity" method="POST">
                           <button type="submit" class="btn btn-default"
