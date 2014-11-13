@@ -8,7 +8,6 @@ import weibo
 import pachong
 import newclass
 import activity
-import bank
 from getclient import getClient
 import pymongo
 con=pymongo.Connection("localhost",27017)
@@ -31,7 +30,7 @@ urls=(
         "/attendActivity","activity.attendActivity",
         "/refuseActivity","activity.refuseActivity",
         "/us","us",
-        "/deletePastActivity","activity.deletePastActivity",
+        "/deletePastActivity","activity.deletePastActivity"
         "/payonline","bank.payonline"
 
     )
@@ -97,15 +96,6 @@ class userindex:
         user=users.find_one({u"uid":uid})
         if user==None:
             informations.append("hello")
-            inituser={}
-            inituser[u'uid']=int(int(cookies[u'uid']))
-            inituser[u'activities']=[]
-            inituser[u'informations']=informations
-            users.insert(inituser)
-            newacount={}
-            newacount[u'name']=infor[u"screen_name"]
-            newacount[u'money']=100000.0
-            bank.insert(newacount)
         else:
             informations=user[u"informations"]
         return render.userindex(infor,informations)

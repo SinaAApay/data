@@ -4,7 +4,7 @@ path = os.path.dirname(os.path.realpath(__file__))
 sys.path.append(path)
 import web
 import pymongo
-import code
+#import code
 from getclient import getClient
 render=web.template.render('/home/rw/workplace/aapay/data/static')
 con=pymongo.Connection('localhost',27017)
@@ -37,7 +37,6 @@ class currentActivity:
                 a_activity=activities.find_one({u'weibo_id':ac})
                 if a_activity[u'ifend']==False and a_activity[u'ifclose']==False:
                     activityORG.append(a_activity)
-        #name=cookie[u'screen_name']
 	infor=client.users.show.get(uid=int(cookie[u'uid']))
 	name=infor[u'screen_name']
 	
@@ -84,7 +83,7 @@ class startActivity:
         weibo_id=webinput[u'weibo_id']
         ac=activities.find_one({u'weibo_id':weibo_id})
         ifbegin=True
-        for people in ac[u'peopleInvited']:
+        for people in ac[u'peoplePay']:
             if (people in ac[u'peopleIn'])==False:
                 ifbegin=False
                 break
@@ -113,7 +112,6 @@ class attendActivity:
         webinput=web.input()
         weibo_id=webinput[u'weibo_id']
         ac=activities.find_one({u'weibo_id':weibo_id})
-        #name=cookies[u'screen_name']
 	acc=cookie[u'access_token']
 	exp=cookie[u'expires_in']
 	client=getClient(acc,exp)
@@ -146,6 +144,9 @@ class refuseActivity:
 	name=infor[u'screen_name']
         weibo_id=webinput[u'weibo_id']
         ac=activities.find_one({u'weibo_id':weibo_id})
+        if ac[u"ifbegin"]==True:
+            web.SeeOther("/currentActivity")
+
         user=users.find_one({u"uid":ac[u'uid']})
         string=name+u"\u62d2\u7edd\u53c2\u52a0\u6d3b\u52a8\uff1a"+ac[u'name']+u"\uff0c\u6d3b\u52a8\u5df2\u7ecf\u5173\u95ed"+"."
         informations=user[u'informations']

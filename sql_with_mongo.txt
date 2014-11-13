@@ -34,14 +34,26 @@ collections:activitys:
         [
             "name":str//"
         ]
+        "peoplePay":
+        [
+            "name":str
+        ]
         "palce":str//where it happens
         "ifbegin":bool
         "ifend":bool//if it end
         "ifclose":false/true
         "money":str//the monkey
         "date":str
-
+        "IfPayOnline":bool
 
     }
 
+}
+collections:bank
+{
+  [
+    "name":str
+    "money":double
+  ]  
+    
 }
