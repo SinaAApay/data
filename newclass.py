@@ -5,6 +5,9 @@ import pymongo
 
 render=web.template.render('/home/rw/workplace/aapay/data/static')
 
+def getClientName(client,uid):
+    infor=client.users.show.get(uid=uid)
+    return infor[u'screen_name']
 
 class sendweibo:
     def POST(self):
@@ -34,7 +37,8 @@ class sendweibo:
         for name in namelist:
             status+=" @"+name
         result=client.statuses.update.post(status=status)
-        namelist.append(str(cookie[u'screen_name']))
+        name=getClientName(client,int(uid))
+        namelist.append(name)
         con=pymongo.Connection("localhost",27017)
         db=con.aapay
         activities=db.activities
@@ -48,7 +52,10 @@ class sendweibo:
         activity[u'date']=activityTime
         activity[u'peopleInvited']=namelist
         peopleIn=[]
-        peopleIn.append(str(cookie[u'screen_name']))
+        peopleIn.append(name)
+        peoplePay=[]
+        peoplePay.append(name)
+        activity[u'peoplePay']=peoplePay
         activity[u'peopleIn']=peopleIn
         activity[u'ifclose']=False
         activity[u'ifbegin']=False
