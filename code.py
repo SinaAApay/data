@@ -32,7 +32,9 @@ urls=(
         "/refuseActivity","activity.refuseActivity",
         "/us","us",
         "/deletePastActivity","activity.deletePastActivity",
-        "/payonline","bank.payonline"
+        "/payonline","bank.payonline",
+        "/beginRefund","bank.beginRefund",
+        "/refund","bank.refund"
 
     )
 

@@ -51,6 +51,7 @@ class sendweibo:
         activity[u'money']=activityMoney
         activity[u'date']=activityTime
         activity[u'peopleInvited']=namelist
+        activity[u'fillmoney']=0.0
         peopleIn=[]
         peopleIn.append(name)
         peoplePay=[]

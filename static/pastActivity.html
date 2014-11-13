@@ -48,7 +48,7 @@ $def with(activitysIN,activitysORG)
                             <li>$name</li>
                             </ul>
                      <li>
-                     还需要补款的金额：100
+                     还需要补款的金额：$ac[u'fillmoney']
                         <form action="payonline" method="POST">
                           <button type="submit" class="btn btn-default"
                               name="weibo_id" value="$ac[u'weibo_id']">确认补款</button>
@@ -93,7 +93,7 @@ $def with(activitysIN,activitysORG)
                       <li>$name</li>
                   </ul>
                   <li>
-                        <form action="/refund" method="POST">
+                        <form action="/beginRefund" method="POST">
                           <button type="submit" class="btn btn-default"
                               name="weibo_id" value="$ac[u'weibo_id']">发起退款</button>
                         </form>
