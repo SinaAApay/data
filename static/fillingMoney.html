@@ -3,7 +3,7 @@ $def with(weibo_id)
 <html>
 		  <head>
 		  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		  <title>退款</title>
+		  <title>补款</title>
 		  <link href="http://apps.bdimg.com/libs/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
 		  <script src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>
 		  <script src="http://apps.bdimg.com/libs/bootstrap/3.0.3/css/bootstrap-theme.min.css"></script>
@@ -30,17 +30,17 @@ var pastname="";
             <div class="row clearfix">
               <div class="col-md-12 column">
                 <div class="row clearfix">
-                <form role="form" action="refund" method="POST">
+                <form role="form" action="setFillMoney" method="POST">
                 <div class="col-md-4 column">
                 </div>
                     <div class="col-md-3 column">
                       <div class="form-group">
                       <br /><br /><br />
-                        <label for="refundMoney">每人需要退款金额：</label>
-                        <input type="" class="form-control" name="refundMoney" />
-                        <input value="$weibo_id" name="weibo_id" />
+                        <label for="fillMoney">每人需要补款金额：</label>
+                        <input type="" class="form-control" name="fillMoney" />
+			<input type="" class="form-control" name="weibo_id" value="$weibo_id" />
                       </div>
-                      <button type="submit" class="btn btn-default">确认退款</button>
+                      <button type="submit" class="btn btn-default">发起补款</button>
                     </div>
                   </form>
                 </div>

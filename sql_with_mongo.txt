@@ -45,6 +45,7 @@ collections:activitys:
         "money":str//the monkey
         "date":str
         "IfPayOnline":bool
+        "fillmoney":float
 
     }
 

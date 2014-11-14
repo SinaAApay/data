@@ -6,13 +6,12 @@ import web
 import pymongo
 from getclient import getClient
 from newclass import getClientName
-render=web.template.render('/home/rw/workplace/aapay/data/static')
+render=web.template.render('static')
 con=pymongo.Connection('localhost',27017)
 db=con.aapay
 activities=db.activities
 users=db.users
 bank=db.bank
-
 
 def refreshInformations(informations,string):
     if len(informations)<5:
@@ -21,7 +20,46 @@ def refreshInformations(informations,string):
         del informations[0]
         informations.insert(4,string)
     return informations
+class setFillMoney:
+    def POST(self):
+        webinput=web.input()
+        fillMoney=webinput[u'fillMoney']
+        weibo_id=webinput[u'weibo_id']
+class startFill:
+    def POST(self):
+        webinput=web.input()
+        weibo_id=webinput[u'weibo_id']
+        return render.fillingMoney(weibo_id)
+class refund:
+    def POST(self):
+        #we should add an information after refund
+        webinput=web.input()
+        weibo_id=webinput[u'weibo_id']
+        refundMoney=float(webinput[u'refundMoney'])
+        ac=activities.find_one({u"weibo_id":weibo_id})
+        peopleInvited=ac[u'peopleInvited']
+        count=0
+        hostname=''
+        for people in peopleInvited:
+            if count==0:
+                count+=1
+                hostname=people
+            else:
+                peopleacount=bank.find_one({u"name":people})
+                money=peopleacount[u'money']+refundMoney
+                bank.update({u'name':people},{"$set":{u'money':money}})
+                hostacount=bank.find_one({u"name":hostname})
+                money=hostacount[u'money']-refundMoney
+                bank.update({u'name':hostname},{"$set":{u'money':money}})
+        web.seeother("/userindex")
+         
+class beginRefund:
+    def POST(self):
+        webinput=web.input()
+        weibo_id=webinput[u'weibo_id']
+        return render.refund(weibo_id)
 
+        
 class payonline:
     def POST(self):
         webinput=web.input()
