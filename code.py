@@ -34,11 +34,13 @@ urls=(
         "/deletePastActivity","activity.deletePastActivity",
         "/payonline","bank.payonline",
         "/beginRefund","bank.beginRefund",
-        "/refund","bank.refund"
+        "/refund","bank.refund",
+        "/startFill","bank.startFill",
+        "/setFillMoney","bank.setFillMoney"
 
     )
 
-render=web.template.render('/home/rw/workplace/aapay/data/static')
+render=web.template.render('static')
 
 app=web.application(urls,globals())
 application=app.wsgifunc()

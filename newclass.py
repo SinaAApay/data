@@ -3,7 +3,7 @@ from getclient import getClient
 import pymongo
 
 
-render=web.template.render('/home/rw/workplace/aapay/data/static')
+render=web.template.render('static')
 
 def getClientName(client,uid):
     infor=client.users.show.get(uid=uid)

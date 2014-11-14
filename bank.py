@@ -6,7 +6,7 @@ import web
 import pymongo
 from getclient import getClient
 from newclass import getClientName
-render=web.template.render('/home/rw/workplace/aapay/data/static')
+render=web.template.render('static')
 con=pymongo.Connection('localhost',27017)
 db=con.aapay
 activities=db.activities
@@ -20,7 +20,16 @@ def refreshInformations(informations,string):
         del informations[0]
         informations.insert(4,string)
     return informations
-
+class setFillMoney:
+    def POST(self):
+        webinput=web.input()
+        fillMoney=webinput[u'fillMoney']
+        weibo_id=webinput[u'weibo_id']
+class startFill:
+    def POST(self):
+        webinput=web.input()
+        weibo_id=webinput[u'weibo_id']
+        return render.fillingMoney(weibo_id)
 class refund:
     def POST(self):
         #we should add an information after refund

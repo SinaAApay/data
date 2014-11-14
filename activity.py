@@ -6,7 +6,7 @@ import web
 import pymongo
 #import code
 from getclient import getClient
-render=web.template.render('/home/rw/workplace/aapay/data/static')
+render=web.template.render('static')
 con=pymongo.Connection('localhost',27017)
 db=con.aapay
 activities=db.activities
