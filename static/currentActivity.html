@@ -84,17 +84,15 @@ $def with(activitysIN,activitysORG)
         </ul>
       </div>
       <div class="col-md-6 column"> 
-        <ul>
             $for ac in activitysORG[::-1]:
-                <li>
                 <div class="panel-group" id="panel-72507">
                 <div class="panel panel-default">
                 <div class="panel-heading"> <a class="panel-title"
                         data-toggle="collapse" data-parent="#panel-72507"
                 href="#$ac['weibo_id']">组织的活动：$ac[u'name']</a> </div>
                 <div id="$ac['weibo_id']" class="panel-collapse in">
-                  <div class="panel-body">
-                    <ul>
+                <div class="panel-body">
+                      <ul>
                       <li>活动地点: $ac[u'place']</li>
                       <li>活动时间：$ac[u'date']</li>
                       <li>活动总金额：$ac[u'money']</li>
@@ -102,9 +100,9 @@ $def with(activitysIN,activitysORG)
                       <ul>
                       $for name in ac['peopleIn']:
                         <li>$name</li>
-                     </ul>
-                <li>付款人員名單:</li>
-                <ul>
+                      </ul>
+                      <li>付款人員名單:</li>
+                      <ul>
                       $for name in ac['peoplePay']:
                         <li>$name</li>
                       </ul>
@@ -126,14 +124,11 @@ $def with(activitysIN,activitysORG)
                         </form>
 
                       </li>
-
-       </ul>
-                  </div>
+                      </ul>
                  </div>
                  </div>
                  </div>
-                </li>
-        </ul>
+                 </div>
       </div>
     </div>
   </div>

@@ -129,8 +129,7 @@ class attendActivity:
             informations=refreshInformations(informations,string)
             users.update({u"uid":ac[u"uid"]},{"$set":{u"informations":informations}})
             activities.update({u'weibo_id':weibo_id},{"$set":{u'peopleIn':peopleIn}})
-            web.seeother("http://alipay.com")
-            #web.seeother("/currentActivity")
+            web.seeother("/currentActivity")
 
 
 class refuseActivity:
