@@ -1,4 +1,4 @@
-$def with(friends)
+$def with(weibo_id)
 <!DOCTYPE html>
 <html>
 		  <head>
@@ -30,14 +30,15 @@ var pastname="";
             <div class="row clearfix">
               <div class="col-md-12 column">
                 <div class="row clearfix">
-                <form role="form" action="fillingmoneyfinished" method="POST">
+                <form role="form" action="setFillMoney" method="POST">
                 <div class="col-md-4 column">
                 </div>
                     <div class="col-md-3 column">
                       <div class="form-group">
                       <br /><br /><br />
-                        <label for="ActivityPosition">每人需要补款金额：</label>
-                        <input type="" class="form-control" name="ActivityPosition" />
+                        <label for="fillMoney">每人需要补款金额：</label>
+                        <input type="" class="form-control" name="fillMoney" />
+			<input type="" class="hidden" name="weibo_id" value="$weibo_id" />
                       </div>
                       <button type="submit" class="btn btn-default">发起补款</button>
                     </div>
