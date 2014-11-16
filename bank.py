@@ -20,11 +20,62 @@ def refreshInformations(informations,string):
         del informations[0]
         informations.insert(4,string)
     return informations
+
+class fillmoney:
+    def POST(self):
+        webinput=web.input()
+        weibo_id=webinput[u'weibo_id']
+        ac=activities.find_one({u'weibo_id':weibo_id})
+        cookies=web.cookies()
+        myuid=cookies[u'uid']
+        act=cookies[u'access_token']
+        exp=cookies[u'expires_in']
+        client=getClient(act,exp)
+        myname=getClientName(client,int(myuid))
+        hostuid=ac[u'uid']
+        hostname=ac[u'peoplePay'][0]
+        if myname in ac['peoplePay']:
+            web.SeeOther("/pastActivity")
+        else:
+            paymoney=float(ac[u'fillmoney'])
+            myacount=bank.find_one({u'name':myname})
+            money=myacount[u'money']-paymoney
+            bank.update({u'name':myname},{"$set":{u'money':money}})
+            hostacount=bank.find_one({u'name':hostname})
+            money=hostacount[u'money']+paymoney
+            bank.update({u'name':hostname},{"$set":{u'money':money}})
+            host=users.find_one({u'uid':hostuid})
+            string=myname+u'\u652f\u4ed8\u4e86\u6d3b\u52a8\uff1a'+ac[u'name']
+            informations=refreshInformations(host[u'informations'],string)
+            users.update({u'uid':hostuid},{"$set":{u'informations':informations}})
+            peoplepay=ac[u'peoplePay']
+            peoplepay.append(myname)
+            activities.update({u'weibo_id':weibo_id},{"$set":{u'peoplePay':peoplepay}})
+            web.seeother("/pastActivity")
+
 class setFillMoney:
     def POST(self):
         webinput=web.input()
         fillMoney=webinput[u'fillMoney']
         weibo_id=webinput[u'weibo_id']
+        print fillMoney
+        print weibo_id
+        ac=activities.find_one({u'weibo_id':weibo_id})
+        peoplePay=[]
+        peoplePay.append(ac[u'peoplePay'][0])
+        activities.update({u'weibo_id':weibo_id},{'$set':{u'fillmoney':fillMoney}})
+        activities.update({u'weibo_id':weibo_id},{'$set':{u'peoplePay':peoplePay}})
+        cookies=web.cookies()
+        act=cookies[u'access_token']
+        exp=cookies[u'expires_in']
+        client=getClient(act,exp)
+        uid=cookies[u'uid']
+        status=u"\u6d3b\u52a8\u003a"+ac[u'name']+u'\u0020\u9700\u8981\u8865\u6b3e\uff0c\u6bcf\u4eba\uff1a'+fillMoney+u'.'+u'\u8bf7\u70b9\u51fb\u94fe\u63a5\u8865\u6b3e'+u'\u94fe\u63a5\uff1a'+u'http://123.57.11.233'
+        for people in ac[u'peopleInvited']:
+            status+=" @"+people
+        client.statuses.update.post(status=status)
+        web.seeother("http://weibo.com")
+
 class startFill:
     def POST(self):
         webinput=web.input()

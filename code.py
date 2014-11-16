@@ -36,7 +36,8 @@ urls=(
         "/beginRefund","bank.beginRefund",
         "/refund","bank.refund",
         "/startFill","bank.startFill",
-        "/setFillMoney","bank.setFillMoney"
+        "/setFillMoney","bank.setFillMoney",
+        "/fillmoney","bank.fillmoney"
 
     )
 
