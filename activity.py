@@ -83,8 +83,8 @@ class startActivity:
         weibo_id=webinput[u'weibo_id']
         ac=activities.find_one({u'weibo_id':weibo_id})
         ifbegin=True
-        for people in ac[u'peoplePay']:
-            if (people in ac[u'peopleIn'])==False:
+        for people in ac[u'peopleInvited']:
+            if (people in ac[u'peoplePay'])==False:
                 ifbegin=False
                 break
         if ifbegin:

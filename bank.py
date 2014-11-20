@@ -35,7 +35,7 @@ class fillmoney:
         hostuid=ac[u'uid']
         hostname=ac[u'peoplePay'][0]
         if myname in ac['peoplePay']:
-            web.SeeOther("/pastActivity")
+            return "Already payed,take it easy"
         else:
             paymoney=float(ac[u'fillmoney'])
             myacount=bank.find_one({u'name':myname})
@@ -51,6 +51,15 @@ class fillmoney:
             peoplepay=ac[u'peoplePay']
             peoplepay.append(myname)
             activities.update({u'weibo_id':weibo_id},{"$set":{u'peoplePay':peoplepay}})
+            ifpayend=False
+            for people in ac[u'peopleIn']:
+                if people in peoplepay:
+                    ifpayend=True
+                else:
+                    ifpayend=False
+                    break
+            if ifpayend:
+                activities.update({u'weibo_id':weibo_id},{"$set":{u'fillmoney':0.0}})
             web.seeother("/pastActivity")
 
 class setFillMoney:
@@ -117,6 +126,7 @@ class payonline:
         weibo_id=webinput[u'weibo_id']
         ac=activities.find_one({u'weibo_id':weibo_id})
         hostname=ac[u'peoplePay'][0]
+        hostuid=ac[u'uid']
         ifpay=True
         for people in ac[u'peopleInvited']:
             if people in ac[u'peopleIn']:
@@ -126,8 +136,6 @@ class payonline:
                 break
         if ifpay:
             paymoney=float(ac[u'money'])/len(ac[u'peopleIn'])
-            print paymoney
-            print len(ac[u'peopleIn'])
             hostacount=bank.find_one({u'name':hostname})
             hostmoney=hostacount[u'money']
             hostmoney+=paymoney
@@ -145,6 +153,10 @@ class payonline:
             peoplePay=ac[u'peoplePay']
             peoplePay.append(myname)
             activities.update({u"weibo_id":weibo_id},{"$set":{u"peoplePay":peoplePay}})
+            string=myname+u"\u652f\u4ed8\u4e86\u6d3b\u52d5"+u":"+ac[u'name']
+            user=users.find_one({u'uid':hostuid})
+            informations=refreshInformations(user[u'informations'],string)
+            users.update({u'uid':hostuid},{"$set":{u'informations':informations}})
         web.SeeOther("/currentActivity")
             
 
