@@ -134,6 +134,16 @@ class payonline:
             else:
                 ifpay=False
                 break
+        cookies=web.cookies()
+        acc=cookies[u'access_token']
+        exp=cookies[u'expires_in']
+        uid=cookies[u'uid']
+        client=getClient(acc,exp)
+        myname=getClientName(client,int(uid))
+        if myname in ac['peoplePay']:
+            ifpay=False
+            
+
         if ifpay:
             paymoney=float(ac[u'money'])/len(ac[u'peopleIn'])
             hostacount=bank.find_one({u'name':hostname})
