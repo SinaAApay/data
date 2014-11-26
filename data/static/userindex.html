@@ -1,0 +1,81 @@
+$def with(userinfor,informations)
+<!DOCTYPE html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>首页</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href="http://apps.bdimg.com/libs/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+<script src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>
+<script src="http://apps.bdimg.com/libs/bootstrap/3.0.3/css/bootstrap-theme.min.css"></script>
+<script src="http://apps.bdimg.com/libs/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div id="header" class="container">
+<div class="col-md-12 column">
+  <h3 class="text-left">Sina AApay </h3>
+  <ul class="nav nav-tabs">
+    <li class="active"> <a href="/userindex">首页</a> </li>
+    <li> <a href="/beginActivity">发起活动</a> </li>
+    <li> <a href="/currentActivity">当前进行的活动</a> </li>
+    <li> <a href="/pastActivity">过去的活动</a> </li>
+  </ul>
+</div>
+<div id="banner">
+  <div class="container">
+    <div class="row clearfix">
+      <div class="col-md-2 column"> <br />
+        <br />
+        <br />
+        <br />
+        <img src="$userinfor[u'profile_image_url']"/> <br/>
+        <a href="http://weibo.com">name: $userinfor[u'screen_name']</a><br/>
+        <small> <a href="http://weibo.com" target="_blank"> 关注:$userinfor.friends_count</a><br />
+        <a href="http://weibo.com" target="_blank"> 粉丝：$userinfor.followers_count</a><br />
+        <a href="http://weibo.com" target="_blank"> 微博：$userinfor.statuses_count</a><br />
+        </small> </div>
+      <div class="col-md-3 column"> <br />
+        <br />
+        <ul >
+          <li><a href="/currentActivity" accesskey="7" title="当前进行的活动"><img src="/static/images/当前进行的活动.png" alt="" /></a><br />
+            当前进行的活动</li>
+          <li><a href="/beginActivity" accesskey="8" title="发起活动"><img src="/static/images/发起活动.png" alt="" /></a><br />
+            发起活动</li>
+          <br />
+        </ul>
+      </div>
+      <div class="col-md-3 column"> <br />
+        <br />
+        <ul>
+          <li><a href="/pastActivity" accesskey="9" title="过去的活动"><img src="/static/images/过去的活动.png" alt="" /></a><br />
+            过去的活动</li>
+          <li><a href="/us" accesskey="10" title="联系我们"><img src="/static/images/联系我们.png" alt="" /></a><br />
+            联系我们</li>
+        </ul>
+      </div>
+      <div class="col-md-4 column">
+      <div class="panel panel-info">
+				<div class="panel-heading">
+					<h3 class="panel-title">
+						信息栏
+					</h3>
+				</div>
+				<div class="panel-body">
+                <ul>
+                $for information in informations[::-1]:
+                    <li>$information</li>
+                </ul>
+				</div>
+			</div>
+      </div>
+    </div>
+  </div>
+  <div style=" position: relative;bottom:-150px" >
+    <hr style="height:2px">
+    <div style="text-align:right"> <a href="/us">联系我们</a> </div>
+    <p style="text-align: center;">SinaAAPay仅提供一个发布活动的平台，对任何法律问题及风险不承担任何责任。</p>
+  </div>
+</div>
+</body>
+</html>
