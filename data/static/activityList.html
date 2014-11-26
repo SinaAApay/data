@@ -1,0 +1,102 @@
+$def with(activitysIN,activitysORG)
+<!DOCTYPE html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>当前进行的活动</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href="http://apps.bdimg.com/libs/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+<script src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>
+<script src="http://apps.bdimg.com/libs/bootstrap/3.0.3/css/bootstrap-theme.min.css"></script>
+<script src="http://apps.bdimg.com/libs/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<div id="header" class="container">
+<div class="col-md-12 column">
+  <h3 class="text-left">Sina AApay </h3>
+  <ul class="nav nav-tabs">
+    <li> <a href="/userindex">首页</a> </li>
+    <li> <a href="/beginActivity">发起活动</a> </li>
+    <li  class="active"> <a href="#">当前进行的活动</a> </li>
+    <li> <a href="#">过去的活动</a> </li>
+  </ul>
+</div>
+<div class="container">
+  <div class="row clearfix">
+    <div class="col-md-12 column">
+      <div class="col-md-6 column">
+        <ul>
+          <li>
+            <div class="panel-group" id="panel-153902">
+              <div class="panel panel-default"> $for ac in activitysIN:
+                <div class="panel-heading"> <a class="panel-title"
+                            data-toggle="collapse" data-parent="#panel-153902"
+                    href="#$ac['uid']">参加的活动：$ac[u'name']</a> </div>
+                <div id="$ac[u'uid']" class="panel-collapse in">
+                  <div class="panel-body">
+                    <ul>
+                      <li>活动地点: $ac[u'place']</li>
+                      <li>活动时间：$ac[u'date']</li>
+                      <li>活动总金额：$ac[u'money']</li>
+                      <li>确认参加人员:</li>
+                      $for name in ac[u'peopleInvited']:
+                      <li>$name</li>
+                      <li>
+                        <form >
+                          <button type="button" class="btn btn-default">确认参加</button>
+                          <button type="button" class="btn btn-default">退出此活动</button>
+                        </form>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-6 column">
+        <ul>
+          $for ac in activitysORG:
+          <li>
+            <div class="panel-group" id="panel-72507">
+              <div class="panel panel-default">
+                <div class="panel-heading"> <a class="panel-title"
+                        data-toggle="collapse" data-parent="#panel-72507"
+                href="#$ac['uid']">组织的活动：$ac[u'name']</a> </div>
+                <div id="$ac['uid']" class="panel-collapse in">
+                  <div class="panel-body">
+                    <ul>
+                      <li>活动地点: $ac[u'place']</li>
+                      <li>活动时间：$ac[u'date']</li>
+                      <li>活动总金额：$ac[u'money']</li>
+                      <li>确认参加人员:</li>
+                      $for name in ac['peopleInvited']:
+                      <li>$name</li>
+                      <li>
+                        <form >
+                          <button type="button" class="btn btn-default">开始活动</button>
+                          <button type="button" class="btn btn-default">确认活动完成</button>
+                        </form>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      
+    </div>
+  </div>
+  <div style=" position: relative;bottom:-100px" >
+    <hr style="height:2px">
+    <div style="text-align:right"> <a href="#">联系我们</a> </div>
+    <p style="text-align: center;">SinaAAPay仅提供一个发布活动的平台，对任何法律问题及风险不承担任何责任。</p>
+  </div>
+</div>
+</body>
+</head>
